@@ -73,7 +73,12 @@ class DesireTheatrePlugin(BasePlugin):
         import asyncio
 
         async def init():
-            from .extensions import OutfitSystem, ItemSystem, AchievementSystem, SceneSystem, GameSystem
+            from .features.outfits.outfit_system import OutfitSystem
+            from .features.items.item_system import ItemSystem
+            from .features.achievements.achievement_system import AchievementSystem
+            from .features.scenes.scene_system import SceneSystem
+            from .features.games.game_system import GameSystem
+
             await OutfitSystem.initialize_outfits()
             await ItemSystem.initialize_items()
             await AchievementSystem.initialize_achievements()
@@ -91,54 +96,77 @@ class DesireTheatrePlugin(BasePlugin):
             logger.error(f"扩展系统初始化失败: {e}", exc_info=True)
 
     def get_plugin_components(self) -> List[Tuple[ComponentInfo, Type]]:
-        from .commands import (
+        # Actions commands
+        from .commands.actions.action_commands import (
             DTActionCommand,
             DTStartGameCommand,
             DTRestartCommand,
             DTQuickInteractCommand,
             DTRecommendCommand,
+        )
+        from .commands.actions.chat_command import DTChatCommand
+
+        # Basic commands
+        from .commands.basic.status_commands import (
             DTStatusCommand,
             DTQuickStatusCommand,
             DTHelpCommand,
             DTGuideCommand,
             DTExportCommand,
             DTImportCommand,
-            DTQuickReferenceCommand,
-            DTChatCommand,
-            DTOutfitListCommand,
-            DTWearOutfitCommand,
-            DTInventoryCommand,
-            DTUseItemCommand,
-            DTSceneListCommand,
-            DTGoSceneCommand,
-            DTTruthCommand,
-            DTDareCommand,
-            DTDiceCommand,
-            DTShopCommand,
-            DTBuyItemCommand,
-            DTBuyOutfitCommand,
-            DTWorkCommand,
-            DTPapaKatsuCommand,
+        )
+        from .commands.basic.quick_reference import DTQuickReferenceCommand
+        from .commands.basic.time_commands import DTNextDayCommand
+
+        # Character commands
+        from .commands.character.personality_commands import (
             DTPersonalityStatusCommand,
             DTDilemmaChoiceCommand,
         )
-        # 时间推进命令
-        from .commands.time_commands import DTNextDayCommand
-        # 结局系统命令
-        from .commands.ending_commands import (
+        from .commands.character.unified_choice_command import DTUnifiedChoiceCommand
+
+        # Career commands
+        from .commands.career.work_commands import DTWorkCommand
+        from .commands.career.v2_system_commands import (
+            DTSeasonCommand,
+            DTCareerCommand,
+            DTPromotionCommand,
+        )
+
+        # Shop commands
+        from .commands.shop.shop_commands import (
+            DTShopCommand,
+            DTBuyItemCommand,
+            DTBuyOutfitCommand,
+        )
+        from .commands.shop.item_commands import (
+            DTInventoryCommand,
+            DTUseItemCommand,
+        )
+        from .commands.shop.outfit_commands import (
+            DTOutfitListCommand,
+            DTWearOutfitCommand,
+        )
+
+        # Social commands
+        from .commands.social.papa_katsu_commands import DTPapaKatsuCommand
+
+        # Endings commands
+        from .commands.endings.ending_commands import (
             DTEndingCommand,
             DTConfirmEndingCommand,
             DTEndingPreviewCommand,
             DTEndingListCommand,
         )
-        # v2.0 新增系统命令
-        from .commands.v2_system_commands import (
-            DTSeasonCommand,
-            DTCareerCommand,
-            DTPromotionCommand,
+
+        # Extensions commands
+        from .commands.extensions.extension_commands import (
+            DTSceneListCommand,
+            DTGoSceneCommand,
+            DTTruthCommand,
+            DTDareCommand,
+            DTDiceCommand,
         )
-        # 统一选择命令（替换旧的事件选择和人格选择命令）
-        from .commands.unified_choice_command import DTUnifiedChoiceCommand
 
         components = [
             # 核心命令（具体命令优先）

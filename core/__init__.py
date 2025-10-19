@@ -3,13 +3,13 @@
 """
 
 from .models import *
-from .attribute_system import AttributeSystem
-from .personality_system import PersonalitySystem
-from .memory_engine import MemoryEngine
-from .preference_engine import PreferenceEngine
-from .scenario_engine import ScenarioEngine
-from .combo_system import ComboSystem
-from .game_mechanics import GameMechanics
+from ..systems.attributes.attribute_system import AttributeSystem
+from ..systems.personality.personality_system import PersonalitySystem
+from ..systems.memory.memory_engine import MemoryEngine
+from ..systems.memory.preference_engine import PreferenceEngine
+from ..systems.mechanics.scenario_engine import ScenarioEngine
+from ..systems.actions.combo_system import ComboSystem
+from ..systems.mechanics.game_mechanics import GameMechanics
 
 __all__ = [
     # 核心数据库模型

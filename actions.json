@@ -148,7 +148,6 @@
       "type": "dominant",
       "base_intensity": 8,
       "category": "dominant",
-      "requires_confirmation": true,
       "requirements": {
         "intimacy": 30,
         "arousal": 25
@@ -227,7 +226,6 @@
       "type": "corrupting",
       "base_intensity": 8,
       "category": "corrupting",
-      "requires_confirmation": true,
       "requirements": {
         "corruption": 35,
         "shame": "<40"
@@ -250,7 +248,6 @@
       "type": "corrupting",
       "base_intensity": 10,
       "category": "corrupting",
-      "requires_confirmation": true,
       "requirements": {
         "corruption": 50,
         "resistance": "<50"
@@ -462,6 +459,7 @@
 
     "穿": {
       "type": "outfit",
+      "base_intensity": 0,
       "category": "outfit",
       "requirements": {},
       "description": "让她穿上指定服装",
@@ -491,6 +489,7 @@
 
     "喂": {
       "type": "item",
+      "base_intensity": 0,
       "category": "item",
       "requirements": {},
       "description": "喂她吃/喝道具",
@@ -499,6 +498,7 @@
 
     "用": {
       "type": "item",
+      "base_intensity": 0,
       "category": "item",
       "requirements": {},
       "description": "对她使用道具",
@@ -507,6 +507,7 @@
 
     "戴": {
       "type": "item",
+      "base_intensity": 0,
       "category": "item",
       "requirements": {
         "submission": 20
@@ -517,6 +518,7 @@
 
     "去": {
       "type": "scene",
+      "base_intensity": 0,
       "category": "scene",
       "requirements": {},
       "description": "切换场景",
@@ -721,7 +723,6 @@
       "type": "seductive",
       "base_intensity": 8,
       "category": "intimate",
-      "requires_confirmation": true,
       "requirements": {
         "intimacy": 50,
         "corruption": 40,
@@ -741,7 +742,6 @@
       "type": "corrupting",
       "base_intensity": 10,
       "category": "corrupting",
-      "requires_confirmation": true,
       "requirements": {
         "intimacy": 70,
         "corruption": 60,
@@ -769,7 +769,6 @@
       "type": "corrupting",
       "base_intensity": 9,
       "category": "corrupting",
-      "requires_confirmation": true,
       "requirements": {
         "intimacy": 60,
         "corruption": 50,
@@ -793,7 +792,6 @@
       "type": "dominant",
       "base_intensity": 8,
       "category": "dominant",
-      "requires_confirmation": true,
       "requirements": {
         "submission": 50,
         "corruption": 40
@@ -817,7 +815,6 @@
       "type": "dominant",
       "base_intensity": 9,
       "category": "dominant",
-      "requires_confirmation": true,
       "requirements": {
         "submission": 55,
         "corruption": 55,
@@ -871,6 +868,10 @@
         "resistance": 20,
         "mood_forced": "警惕"
       },
+      "time_bonus": {
+        "condition": "22-6",
+        "bonus_multiplier": 1.2
+      },
       "risk_modifiers": {
         "trust>70": -0.3,
         "corruption>40": -0.25,
@@ -899,6 +900,10 @@
         "trust": -8,
         "resistance": 18,
         "shame": 10
+      },
+      "time_bonus": {
+        "condition": "18-23",
+        "bonus_multiplier": 1.2
       },
       "risk_modifiers": {
         "corruption>50": -0.3,
@@ -1191,6 +1196,10 @@
         "trust": 5,
         "mood_gauge": 15
       },
+      "time_bonus": {
+        "condition": "17-20",
+        "bonus_multiplier": 1.3
+      },
       "description": "亲手为她做饭"
     },
 
@@ -1339,6 +1348,10 @@
         "intimacy": 4,
         "mood_gauge": 12
       },
+      "time_bonus": {
+        "condition": "16-19",
+        "bonus_multiplier": 1.3
+      },
       "description": "和她一起散步"
     },
 
@@ -1370,6 +1383,10 @@
         "affection": 6,
         "mood_gauge": 15
       },
+      "time_bonus": {
+        "condition": "19-23",
+        "bonus_multiplier": 1.2
+      },
       "modifiers": {
         "情歌": {"intensity": 1, "affection": 8, "intimacy": 4},
         "摇篮曲": {"intensity": 0, "affection": 10, "trust": 5}
@@ -1399,6 +1416,10 @@
         "affection": 8,
         "intimacy": 5,
         "mood_gauge": 15
+      },
+      "time_bonus": {
+        "condition": "19-23",
+        "bonus_multiplier": 1.3
       },
       "modifiers": {
         "恐怖片": {"intensity": 1, "intimacy": 8, "affection": 6},
@@ -1431,6 +1452,10 @@
         "trust": 6,
         "intelligence": 2
       },
+      "time_bonus": {
+        "condition": "14-18",
+        "bonus_multiplier": 1.2
+      },
       "description": "陪她一起学习"
     },
 
@@ -1443,6 +1468,10 @@
         "affection": 5,
         "intimacy": 3,
         "mood_gauge": 12
+      },
+      "time_bonus": {
+        "condition": "6-9",
+        "bonus_multiplier": 1.3
       },
       "description": "一起锻炼身体"
     },
@@ -1507,6 +1536,10 @@
       "effects": {
         "affection": 8,
         "trust": 5
+      },
+      "time_bonus": {
+        "condition": "21-24",
+        "bonus_multiplier": 1.3
       },
       "description": "为她盖好被子"
     },

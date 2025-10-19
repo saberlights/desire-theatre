@@ -5,6 +5,9 @@
 import time
 import os
 from peewee import Model, TextField, BooleanField, FloatField, IntegerField, SqliteDatabase
+from src.common.logger import get_logger
+
+logger = get_logger("dt_models")
 
 # 创建独立的数据库实例
 PLUGIN_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +56,21 @@ class DTCharacter(Model):
 
     # 行动点系统
     current_action_points = IntegerField(default=10)  # 当前行动点
+
+    # 职业系统
+    career = TextField(default="high_school_student")  # 当前职业ID
+    career_day = IntegerField(default=0)  # 从业天数
+
+    # 职业属性（影响职业发展和收入）
+    intelligence = IntegerField(default=0)      # 智力 0-100
+    creativity = IntegerField(default=0)        # 创造力 0-100
+    charm = IntegerField(default=0)             # 魅力 0-100
+    professionalism = IntegerField(default=0)   # 专业度 0-100
+    leadership = IntegerField(default=0)        # 领导力 0-100
+    performance = IntegerField(default=0)       # 表演力 0-100
+    confidence = IntegerField(default=0)        # 自信 0-100
+    freedom = IntegerField(default=0)           # 自由度 0-100
+    popularity = IntegerField(default=0)        # 人气 0-100
 
     # 虚拟时间系统
     game_day = IntegerField(default=1)  # 游戏天数
@@ -365,6 +383,52 @@ class DTGameRecord(Model):
         table_name = "dt_game_record"
 
 
+def _migrate_career_fields():
+    """数据库迁移：添加职业系统字段"""
+    try:
+        cursor = dt_db.cursor()
+
+        # 获取现有列
+        cursor.execute("PRAGMA table_info(dt_character)")
+        existing_columns = {row[1] for row in cursor.fetchall()}
+
+        # 需要添加的职业字段
+        career_fields = {
+            "career": "TEXT DEFAULT 'high_school_student'",
+            "career_day": "INTEGER DEFAULT 0",
+            "intelligence": "INTEGER DEFAULT 0",
+            "creativity": "INTEGER DEFAULT 0",
+            "charm": "INTEGER DEFAULT 0",
+            "professionalism": "INTEGER DEFAULT 0",
+            "leadership": "INTEGER DEFAULT 0",
+            "performance": "INTEGER DEFAULT 0",
+            "confidence": "INTEGER DEFAULT 0",
+            "freedom": "INTEGER DEFAULT 0",
+            "popularity": "INTEGER DEFAULT 0",
+        }
+
+        # 添加缺失的列
+        added_count = 0
+        for field_name, field_type in career_fields.items():
+            if field_name not in existing_columns:
+                try:
+                    cursor.execute(f"ALTER TABLE dt_character ADD COLUMN {field_name} {field_type}")
+                    logger.info(f"添加职业字段: {field_name}")
+                    added_count += 1
+                except Exception as e:
+                    logger.error(f"添加字段 {field_name} 失败: {e}")
+
+        if added_count > 0:
+            dt_db.commit()
+            logger.info(f"数据库迁移完成，添加了 {added_count} 个职业字段")
+        else:
+            logger.info("职业字段已存在，无需迁移")
+
+    except Exception as e:
+        logger.error(f"数据库迁移失败: {e}", exc_info=True)
+
+
+
 def init_dt_database():
     """初始化欲望剧场数据库表"""
     with dt_db:
@@ -387,3 +451,6 @@ def init_dt_database():
             DTVisitedScene,
             DTGameRecord,
         ], safe=True)
+
+        # 【迁移】添加职业系统字段（如果不存在）
+        _migrate_career_fields()
