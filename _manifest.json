@@ -1,0 +1,118 @@
+{
+  "manifest_version": 1,
+  "name": "欲望剧场 (Desire Theatre)",
+  "version": "1.0.0",
+  "description": "动态NSFW叙事引擎 - 包含九维属性系统、人格演化、记忆学习、多线剧情、羞耻挑战、服装道具、成就系统",
+  "author": {
+    "name": "MaiBot Community",
+    "url": "https://github.com/MaiM-with-u/MaiBot"
+  },
+  "license": "GPL-v3.0-or-later",
+
+  "host_application": {
+    "min_version": "0.10.0"
+  },
+  "keywords": ["nsfw", "rpg", "interactive", "narrative", "attribute-system", "personality", "memory"],
+  "categories": ["Entertainment", "Interactive"],
+
+  "default_locale": "zh-CN",
+
+  "plugin_info": {
+    "is_built_in": false,
+    "plugin_type": "entertainment",
+    "components": [
+      {
+        "type": "action",
+        "name": "desire_theatre",
+        "description": "进行欲望剧场NSFW互动"
+      },
+      {
+        "type": "command",
+        "name": "dt_help",
+        "description": "显示帮助信息"
+      },
+      {
+        "type": "command",
+        "name": "dt_status",
+        "description": "查看角色状态"
+      },
+      {
+        "type": "command",
+        "name": "dt_personality",
+        "description": "选择角色人格"
+      },
+      {
+        "type": "command",
+        "name": "dt_memory",
+        "description": "查看重要记忆"
+      },
+      {
+        "type": "command",
+        "name": "dt_challenge",
+        "description": "获取羞耻挑战"
+      },
+      {
+        "type": "command",
+        "name": "dt_challenge_list",
+        "description": "查看挑战列表"
+      },
+      {
+        "type": "command",
+        "name": "dt_challenge_complete",
+        "description": "完成挑战"
+      },
+      {
+        "type": "command",
+        "name": "dt_outfit_list",
+        "description": "查看服装列表"
+      },
+      {
+        "type": "command",
+        "name": "dt_outfit_wear",
+        "description": "穿上服装"
+      },
+      {
+        "type": "command",
+        "name": "dt_outfit_shop",
+        "description": "查看服装商店"
+      },
+      {
+        "type": "command",
+        "name": "dt_inventory",
+        "description": "查看道具背包"
+      },
+      {
+        "type": "command",
+        "name": "dt_use_item",
+        "description": "使用道具"
+      },
+      {
+        "type": "command",
+        "name": "dt_achievements",
+        "description": "查看成就列表"
+      },
+      {
+        "type": "command",
+        "name": "dt_multiplayer",
+        "description": "发起多人场景"
+      }
+    ],
+    "features": [
+      "九维属性系统（好感、亲密、信任、顺从、欲望、堕落、兴奋、抵抗、羞耻）",
+      "五种基础人格模板（傲娇、天真、妖媚、害羞、高冷）",
+      "动态人格演化与特质解锁",
+      "记忆系统（自动记住重要互动）",
+      "偏好学习（AI学习用户癖好）",
+      "情境触发系统（30+种特殊事件）",
+      "属性衰减机制",
+      "羞耻挑战系统（根据羞耻度生成任务）",
+      "多人剧情系统（3P、群体、NTR、公开展示）",
+      "服装系统（8种服装带属性加成）",
+      "道具系统（5种道具产生效果）",
+      "成就系统（里程碑、收集、隐藏成就）"
+    ]
+  },
+
+  "dependencies": [],
+  "python_dependencies": []
+}
