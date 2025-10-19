@@ -72,6 +72,11 @@ class DTCharacter(Model):
     # 场景系统
     current_scene = TextField(default="bedroom")  # 当前场景ID
 
+    # 事件系统
+    active_event = TextField(null=True)  # 当前活跃的事件 JSON {"event_id": "xxx"}
+    pending_dilemma = TextField(null=True)  # 待处理的选择困境ID
+    dilemma_triggered_at = FloatField(null=True)  # 困境触发时间
+
     # 时间戳
     created_at = FloatField(default=time.time)
     last_interaction = FloatField(default=time.time)
