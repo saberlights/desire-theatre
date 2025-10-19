@@ -258,6 +258,19 @@ class ChoiceDilemmaSystem:
     }
 
     @staticmethod
+    def get_dilemma_by_id(dilemma_id: str) -> Optional[Dict]:
+        """
+        根据ID获取困境定义
+
+        Args:
+            dilemma_id: 困境ID
+
+        Returns:
+            困境定义字典，如果不存在则返回None
+        """
+        return ChoiceDilemmaSystem.DILEMMA_EVENTS.get(dilemma_id)
+
+    @staticmethod
     def check_dilemma_trigger(character: Dict, recent_events: List[Dict] = None) -> Tuple[bool, Optional[Dict]]:
         """
         检查是否触发选择困境
